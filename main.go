@@ -4,16 +4,16 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 	"strings"
-	"os"
 	"time"
-	"log"
 
-	"github.com/cavaliercoder/grab"
 	tm "github.com/buger/goterm"
+	"github.com/cavaliergopher/grab/v3"
 )
 
 func main() {
@@ -41,7 +41,7 @@ func main() {
 }
 
 func help() {
-	fmt.Println("Usage: "+os.Args[0]+" [packagename]")
+	fmt.Println("Usage: " + os.Args[0] + " [packagename]")
 	os.Exit(1)
 }
 
@@ -95,11 +95,11 @@ Loop:
 	for {
 		select {
 		case <-t.C:
-			tm.MoveCursor(1,1)
-			tm.Println("Package name: "+packageName)
+			tm.MoveCursor(1, 1)
+			tm.Println("Package name: " + packageName)
 			tm.Println("Name        : " + renameFile)
 			tm.Println("File Size   : " + fileSize)
-			tm.Println("Downloading "+fmt.Sprintf("%d", resp.BytesComplete())+ "/"+fmt.Sprintf("%d", resp.Size())+" ("+fmt.Sprintf("%f",100*resp.Progress())+"%)")
+			tm.Println("Downloading " + fmt.Sprintf("%d", resp.BytesComplete()) + "/" + fmt.Sprintf("%d", resp.Size()) + " (" + fmt.Sprintf("%f", 100*resp.Progress()) + "%)")
 			tm.Flush()
 		case <-resp.Done:
 			break Loop
@@ -111,8 +111,8 @@ Loop:
 		os.Exit(1)
 	}
 	err := os.Rename("./"+resp.Filename, "./"+renameFile)
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("Download saved to ./%v \n", renameFile)
 }
