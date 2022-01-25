@@ -3,11 +3,11 @@ Golang APK Downloader
 
 ## Installation
 * Install [Golang](https://golang.org/dl/)
-* `$ go get "github.com/cavaliercoder/grab"`
-* `$ go get ""github.com/buger/goterm"`
+* `$ go mod tidy`
 
 ## Usage
-* `$ go build` to compile or `$ go run main.go`
+* `$ go build` to compile`
+* `$ ./tool com.appname.org` -- example
 
 ## Preview
 [![asciicast](https://asciinema.org/a/420816.png)](https://asciinema.org/a/420816?autoplay=1)
